@@ -1,0 +1,96 @@
+.swap-container {
+  width: 100vw;
+  height: 94vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.swap-title {
+  font-size: x-large;
+  margin-bottom: 20px;
+}
+
+.swap-title span {
+  color: orange;
+  font-weight: bold;
+}
+
+.swap-ticket {
+  width: 800px;
+  height: 300px;
+  box-shadow: 1px 1px 1px 1px silver;
+  display: flex;
+}
+
+.swap-ticket .left {
+  padding: 30px;
+  flex-grow: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.swap-ticket .right {
+  flex-grow: 1;
+  padding: 40px 30px;
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+  font-size: xx-large;
+  font-weight: bold;
+  color: white;
+  background-color: tan;
+  cursor: pointer;
+}
+
+.swap-ticket .from {
+  display: flex;
+  flex-grow: 1;
+}
+
+.swap-ticket .to {
+  display: flex;
+  flex-grow: 1;
+}
+
+.swap-ticket .text {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.swap-ticket .text :first-child {
+  color: burlywood;
+  font-weight: 500;
+  font-size: large;
+}
+
+.swap-ticket .text :last-child {
+  font-size: x-small;
+  font-weight: 500;
+  color: silver;
+}
+
+.swap-ticket .icon {
+  cursor: pointer;
+  margin-top: 25px;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ff9632;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  background-image: url(https://klayswap.com/img/icon/ic-unselected-token.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.swap-ticket .icon-text {
+  color: #ff9632;
+  font-weight: bold;
+  font-size: small;
+  margin-top: 5px;
+}
