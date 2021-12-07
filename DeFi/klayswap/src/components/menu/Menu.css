@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+  height: 6vh;
+  margin: 0 2vw;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: 20px;
+  margin-right: 3vw;
+  font-weight: 500;
+}
