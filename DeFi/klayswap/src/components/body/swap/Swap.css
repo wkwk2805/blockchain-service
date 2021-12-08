@@ -44,12 +44,7 @@
   cursor: pointer;
 }
 
-.swap-ticket .from {
-  display: flex;
-  flex-grow: 1;
-}
-
-.swap-ticket .to {
+.swap-ticket .item {
   display: flex;
   flex-grow: 1;
 }

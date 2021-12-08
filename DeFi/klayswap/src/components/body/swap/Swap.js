@@ -1,7 +1,11 @@
 import React from "react";
+import FromTo from "./FromTo";
 import "./Swap.css";
 
 const Swap = () => {
+  const swap = async () => {
+    const accounts = await window.klaytn.enable();
+  };
   return (
     <div className="swap-container">
       <div className="swap-title">
@@ -9,30 +13,12 @@ const Swap = () => {
       </div>
       <div className="swap-ticket">
         <div className="left">
-          <div className="from">
-            <div className="text">
-              <div>From</div>
-              <div>0</div>
-              <div>보유 0</div>
-            </div>
-            <div>
-              <div className="icon"></div>
-              <div className="icon-text">token</div>
-            </div>
-          </div>
-          <div className="to">
-            <div className="text">
-              <div>To</div>
-              <div>0</div>
-              <div>보유 0</div>
-            </div>
-            <div>
-              <div className="icon"></div>
-              <div className="icon-text">token</div>
-            </div>
-          </div>
+          <FromTo title="From" data="0" reserve="0" />
+          <FromTo title="To" data="0" reserve="0" />
         </div>
-        <div className="right">swap</div>
+        <div className="right" onClick={swap}>
+          swap
+        </div>
       </div>
     </div>
   );
