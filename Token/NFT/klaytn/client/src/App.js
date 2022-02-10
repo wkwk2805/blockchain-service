@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Web3 from "web3";
-import MyNFTokenABI from "./contracts/MyNFTokenABI";
-import ReactLoading from "react-loading";
+import myNFT from "./contracts/MyNFT.json";
 import "./App.css";
+const myNFTAddress = "0x672D28589A3661CB9A1fCE0336e6e43CdFe2C2B2";
 
 const App = () => {
   const [NFTList, setNFTList] = useState([]);
   const [web3, setWeb3] = useState();
   const mintNFT = async () => {
     const address = (await web3.eth.getAccounts())[0];
-    console.log(address);
-    const contract = new web3.eth.Contract(
-      MyNFTokenABI,
-      "0xA670236675E7C3c3d886a645c86C76eDC7EA9Fe7"
-    );
-    // console.log(contract.events.TOKEN_ID());
-    const result = await contract.methods
-      .awardItem(address, "ipfs://")
-      .send({ from: address });
-    const tokenId = result.events.TOKEN_ID.returnValues.tokenId;
-    console.log(tokenId);
+    const myNFTContract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
+    myNFTContract.methods.awardItem(address, "ipfs://").send({ from: address });
   };
   const burnNFT = () => {
     console.log("burnNFT");
@@ -33,15 +24,18 @@ const App = () => {
       alert("메타마스크 지갑을 설치해 주세요!!");
     }
   };
+  const getItems = async () => {
+    const address = (await web3.eth.getAccounts())[0];
+    const myNFTContract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
+    myNFTContract.methods.getItems(address).call().then(console.log);
+  };
   return (
     <div>
-      <div className="loading">
-        <ReactLoading color={"black"} type={"spin"} />
-      </div>
       <div style={{ fontSize: "5em" }}>NFT</div>
       {web3 ? <></> : <button onClick={connectWallet}>지갑 연결하기</button>}
       <button onClick={mintNFT}>NFT 만들기</button>
       <button onClick={burnNFT}>NFT 지우기</button>
+      <button onClick={getItems}>아이템 가져오기</button>
     </div>
   );
 };

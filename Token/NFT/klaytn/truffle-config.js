@@ -18,8 +18,8 @@ module.exports = {
           privatekey,
           "https://rinkeby.infura.io/v3/d3b981d352c04119ae04100edfae8c0c"
         ),
-      network_id: "*", 
-      gas: 5500000, 
+      network_id: "*",
+      gas: 5500000,
       confirmations: 2, // 배포간격을 위해 존재하는 블록간격
       timeoutBlocks: 200, // 채굴전까지 기다려주는 시간 (기본:50s)
       skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
