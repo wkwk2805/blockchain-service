@@ -1,11 +1,7 @@
 const { sha256 } = require("ethereum-cryptography/sha256");
 const { keccak256 } = require("ethereum-cryptography/keccak");
 const { ripemd160 } = require("ethereum-cryptography/ripemd160");
-const {
-  utf8ToBytes,
-  bytesToHex,
-  hexToBytes,
-} = require("ethereum-cryptography/utils");
+const { utf8ToBytes, bytesToHex } = require("ethereum-cryptography/utils");
 
 // 단방향 암호화
 console.log("===================단방향===================\n");
