@@ -5,7 +5,7 @@ import "./App.css";
 import { pinFileToIPFS, pinJSONToIPFS, getIPFSData } from "./pinata";
 
 // const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
-const myNFTAddress = "0x03BF706753594F6cEa8afB8680C06969bDDDBf3C"; // rinkeby contract address
+const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
 
 const App = () => {
   const [NFTList, setNFTList] = useState([]);
