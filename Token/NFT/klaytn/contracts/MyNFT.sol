@@ -13,7 +13,7 @@ contract MyNFT is ERC721URIStorage, ERC721Enumerable, Ownable {
 
     constructor() ERC721("MyNFT", "MNFT") {}
 
-    function awardItem(address player, string memory tokenUri)
+    function create(address player, string memory tokenUri)
         public
         returns (uint256)
     {

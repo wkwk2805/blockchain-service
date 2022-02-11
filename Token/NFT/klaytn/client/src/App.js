@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import Web3 from "web3";
 import myNFT from "./contracts/MyNFT.json";
 import "./App.css";
+import { pinFileToIPFS, pinJSONToIPFS, getIPFSData } from "./pinata";
 
-import { pinFileToIPFS } from "./pinFileToIPFS";
-
-const myNFTAddress = "0xC542F7C095173569bC0a22426342794C31476273";
+// const myNFTAddress = "0xC1B6e6ED0605D13738572068eb64292B2267E797"; // local contract address
+const myNFTAddress = "0x03BF706753594F6cEa8afB8680C06969bDDDBf3C"; // rinkeby contract address
 
 const App = () => {
   const [NFTList, setNFTList] = useState([]);
   const [web3, setWeb3] = useState();
   const [file, setFile] = useState();
-  const mintNFT = async () => {
+  const mintNFT = async (imageURI) => {
+    await connectWallet();
     const address = (await web3.eth.getAccounts())[0];
     const myNFTContract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
-    myNFTContract.methods.awardItem(address, "ipfs://").send({ from: address });
+    await myNFTContract.methods
+      .create(address, imageURI)
+      .send({ from: address });
   };
   const burnNFT = () => {
     console.log("burnNFT");
   };
   const connectWallet = async () => {
+    if (web3) return;
     if (window.ethereum) {
       const web3 = new Web3(window.ethereum);
       await window.ethereum.enable();
@@ -29,19 +33,29 @@ const App = () => {
     }
   };
   const getItems = async () => {
+    await connectWallet();
     const address = (await web3.eth.getAccounts())[0];
     const myNFTContract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
     const list = await myNFTContract.methods.getItems(address).call();
-    setNFTList(list);
+    const items = [];
+    for (const item of list) {
+      const d = await getIPFSData(item);
+      items.push(d);
+    }
+    setNFTList(items);
   };
   const putIPFS = async () => {
     const formData = new FormData();
     formData.append("file", file);
-    pinFileToIPFS(
-      "55a704003bad07615460",
-      "1707ed247b8c764c1ab68b3a5ffac84aec9f0843e28969217b627327bc0a0072",
-      formData
-    );
+    const fileData = await pinFileToIPFS(formData, "FileName");
+    const data = await pinJSONToIPFS({
+      description: "description",
+      image: "http://ipfs.io/ipfs/" + fileData.IpfsHash,
+      name: "JSON Data",
+      attributes: [],
+    });
+    await mintNFT("http://ipfs.io/ipfs/" + data.IpfsHash);
+    await getItems();
   };
   const _onChange = (e) => {
     setFile(e.target.files[0]);
@@ -50,11 +64,26 @@ const App = () => {
     <div>
       <div style={{ fontSize: "5em" }}>NFT</div>
       {web3 ? <></> : <button onClick={connectWallet}>지갑 연결하기</button>}
-      <button onClick={mintNFT}>NFT 만들기</button>
-      <button onClick={burnNFT}>NFT 지우기</button>
-      <button onClick={getItems}>아이템 가져오기</button>
-      <input type="file" onChange={_onChange} />
-      <button onClick={putIPFS}>ipfs에 이미지 넣기</button>
+      <div>
+        <button onClick={getItems}>아이템 가져오기</button>
+      </div>
+      <div>
+        <input type="file" onChange={_onChange} />
+        <button onClick={putIPFS}>ipfs에 이미지 넣기</button>
+      </div>
+      <div>
+        {NFTList.map((e) => {
+          return (
+            <div>
+              <img width={300} src={e.image} alt="" />
+              <div>{e.image}</div>
+              <div>
+                <button onClick={burnNFT}>삭제</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
