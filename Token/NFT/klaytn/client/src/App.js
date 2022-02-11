@@ -4,7 +4,7 @@ import myNFT from "./contracts/MyNFT.json";
 import "./App.css";
 import { pinFileToIPFS, pinJSONToIPFS, getIPFSData } from "./pinata";
 
-// const myNFTAddress = "0xC1B6e6ED0605D13738572068eb64292B2267E797"; // local contract address
+// const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
 const myNFTAddress = "0x03BF706753594F6cEa8afB8680C06969bDDDBf3C"; // rinkeby contract address
 
 const App = () => {
@@ -19,8 +19,11 @@ const App = () => {
       .create(address, imageURI)
       .send({ from: address });
   };
-  const burnNFT = () => {
-    console.log("burnNFT");
+  const burnNFT = async (tokenId) => {
+    const address = (await web3.eth.getAccounts())[0];
+    const myNFTContract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
+    await myNFTContract.methods.burn(tokenId).send({ from: address });
+    await getItems();
   };
   const connectWallet = async () => {
     if (web3) return;
@@ -36,11 +39,11 @@ const App = () => {
     await connectWallet();
     const address = (await web3.eth.getAccounts())[0];
     const myNFTContract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
-    const list = await myNFTContract.methods.getItems(address).call();
+    const itemList = await myNFTContract.methods.getItems(address).call();
     const items = [];
-    for (const item of list) {
-      const d = await getIPFSData(item);
-      items.push(d);
+    for (let i = 0; i < itemList.length; i++) {
+      const metadata = await getIPFSData(itemList[i].uri);
+      items.push({ imageUri: metadata.image, tokenId: itemList[i].tokenId });
     }
     setNFTList(items);
   };
@@ -75,10 +78,10 @@ const App = () => {
         {NFTList.map((e) => {
           return (
             <div>
-              <img width={300} src={e.image} alt="" />
-              <div>{e.image}</div>
+              <img width={300} src={e.imageUri} alt="" />
+              <div>{e.imageUri}</div>
               <div>
-                <button onClick={burnNFT}>삭제</button>
+                <button onClick={() => burnNFT(e.tokenId)}>삭제</button>
               </div>
             </div>
           );

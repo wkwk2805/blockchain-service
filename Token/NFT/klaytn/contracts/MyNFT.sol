@@ -4,12 +4,18 @@ pragma solidity ^0.8.0;
 
 import '../client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol';
 import '../client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol';
+import '../client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol';
 import '../client/node_modules/@openzeppelin/contracts/access/Ownable.sol';
 import '../client/node_modules/@openzeppelin/contracts/utils/Counters.sol';
 
-contract MyNFT is ERC721("MyNFT", "MNFT"), ERC721URIStorage, ERC721Enumerable, Ownable {
+contract MyNFT is ERC721("MyNFT", "MNFT"), ERC721URIStorage, ERC721Enumerable, ERC721Burnable, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+    
+    struct ReturnData {
+        uint256 tokenId;
+        string uri;
+    }
 
     function create(address player, string memory tokenUri)
         public
@@ -24,12 +30,12 @@ contract MyNFT is ERC721("MyNFT", "MNFT"), ERC721URIStorage, ERC721Enumerable, O
         return newItemId;
     }
     
-    function getItems(address from) public view returns(string[] memory){
+    function getItems(address from) public view returns(ReturnData[] memory){
         uint256 balance = balanceOf(from);
-        string[] memory items = new string[](balance);
+        ReturnData[] memory items = new ReturnData[](balance);
         for(uint i = 0; i < balance; i++) {
             uint256 id = tokenOfOwnerByIndex(from, i);
-            items[i] = tokenURI(id);
+            items[i] = ReturnData(id, tokenURI(id));
         }
         return items;
     }
