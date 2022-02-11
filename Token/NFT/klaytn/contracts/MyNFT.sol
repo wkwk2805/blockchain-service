@@ -7,11 +7,9 @@ import '../client/node_modules/@openzeppelin/contracts/token/ERC721/extensions/E
 import '../client/node_modules/@openzeppelin/contracts/access/Ownable.sol';
 import '../client/node_modules/@openzeppelin/contracts/utils/Counters.sol';
 
-contract MyNFT is ERC721URIStorage, ERC721Enumerable, Ownable {
+contract MyNFT is ERC721("MyNFT", "MNFT"), ERC721URIStorage, ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-
-    constructor() ERC721("MyNFT", "MNFT") {}
 
     function create(address player, string memory tokenUri)
         public
