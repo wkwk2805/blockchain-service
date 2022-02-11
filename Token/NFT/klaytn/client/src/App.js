@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+/* import React, { useState } from "react";
 import Web3 from "web3";
 import myNFT from "./contracts/MyNFT.json";
 import "./App.css";
-import { pinFileToIPFS, pinJSONToIPFS, getIPFSData } from "./pinata";
+import { pinFileToIPFS, pinJSONToIPFS, getIPFSData } from "./utils/pinata";
 
 // const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
 const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
@@ -87,6 +87,42 @@ const App = () => {
           );
         })}
       </div>
+    </div>
+  );
+};
+
+export default App;
+ */
+
+import React, { useEffect, useState } from "react";
+import ItemList from "./components/ItemList";
+import myNFT from "./contracts/MyNFT.json";
+import Web3 from "web3";
+import UploadBtn from "./components/UploadBtn";
+
+// const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
+const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
+
+const App = () => {
+  const [web3, setWeb3] = useState();
+  useEffect(() => {
+    connectWallet();
+  }, []);
+  const connectWallet = async () => {
+    if (web3) return;
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+      setWeb3(web3);
+    } else {
+      alert("메타마스크 지갑을 설치해 주세요!!");
+    }
+  };
+  return (
+    <div>
+      <div>NFT</div>
+      <UploadBtn web3={web3} />
+      {web3 ? <ItemList web3={web3} /> : <></>}
     </div>
   );
 };
