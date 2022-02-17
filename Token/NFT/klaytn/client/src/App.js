@@ -107,7 +107,9 @@ const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby co
 
 const App = () => {
   const [web3, setWeb3] = useState();
-  useEffect(() => {}, []);
+  useEffect(() => {
+    connectWallet();
+  });
   const connectWallet = async () => {
     if (window.ethereum) {
       const web3 = new Web3(window.ethereum);
@@ -119,7 +121,7 @@ const App = () => {
   };
   return (
     <div>
-      <Loading isShow={false} />
+      <Loading />
       <div className="container">
         <div className="head">NFT</div>
         {web3 ? (

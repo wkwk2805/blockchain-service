@@ -1,13 +1,15 @@
 import React from "react";
 import ReactLoading from "react-loading";
+import { useSelector } from "react-redux";
 
-const Loading = ({ isShow = false }) => {
-  return isShow ? (
+const Loading = () => {
+  const isShowLoading = useSelector((s) => s.loading);
+  return isShowLoading ? (
     <div
       style={{
         width: "100%",
         height: "100%",
-        position: "absolute",
+        position: "fixed",
         zIndex: 2,
         background: "white",
         opacity: 0.5,
