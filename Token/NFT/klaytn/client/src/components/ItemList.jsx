@@ -4,6 +4,8 @@ import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import { getIPFSData } from "../utils/pinata";
 import myNFT from "../contracts/MyNFT.json";
+import { Button } from "@mui/material";
+import RemoveBtn from "./RemoveBtn";
 
 // const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
 const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
@@ -24,22 +26,25 @@ export default function ItemList({ web3 }) {
     }
     setNFTList(items);
   };
-  return itemData ? (
-    <ImageList sx={{ width: 500 }}>
-      {itemData.map((item) => (
-        <ImageListItem key={item.title}>
-          <img
-            src={`${item.img}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-          <ImageListItemBar
-            title={item.title}
-            subtitle={<span>by: {item.author}</span>}
-            position="below"
-          />
-        </ImageListItem>
+  return NFTList ? (
+    <ImageList>
+      {NFTList.map((item) => (
+        <div>
+          <ImageListItem key={item.title}>
+            <img
+              src={`${item.imageUri}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.imageUri}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.tokenId}
+              loading="lazy"
+            />
+            <ImageListItemBar
+              title={"Token ID: " + item.tokenId}
+              subtitle={<span>Image URI: {item.imageUri}</span>}
+              position="below"
+            />
+          </ImageListItem>
+          <RemoveBtn tokenId={item.tokenId} web3={web3} />
+        </div>
       ))}
     </ImageList>
   ) : (

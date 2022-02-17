@@ -6,14 +6,17 @@ import myNFT from "../contracts/MyNFT.json";
 // const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
 const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
 
-const UploadBtn = ({ web3 }) => {
+const UploadBtn = ({ web3, getItems }) => {
   const [file, setFile] = useState();
   const mintNFT = async (imageURI) => {
-    const contract = web3.eth.Contract(myNFT.abi, myNFTAddress);
+    const contract = new web3.eth.Contract(myNFT.abi, myNFTAddress);
     const address = (await web3.eth.getAccounts())[0];
     await contract.methods.create(address, imageURI).send({ from: address });
   };
   const putIPFS = async () => {
+    if (!file) {
+      alert("파일을 선택해주세요!");
+    }
     const formData = new FormData();
     formData.append("file", file);
     const fileData = await pinFileToIPFS(formData, "FileName");
@@ -24,6 +27,7 @@ const UploadBtn = ({ web3 }) => {
       attributes: [],
     });
     await mintNFT("http://ipfs.io/ipfs/" + data.IpfsHash);
+    await getItems();
   };
   const _onChange = (e) => {
     setFile(e.target.files[0]);

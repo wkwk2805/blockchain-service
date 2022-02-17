@@ -4,3 +4,17 @@
   position: absolute;
   background: rgba(0, 0, 0, 0.1);
 }
+.container {
+  padding: 20px;
+}
+
+.head {
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.sub {
+  font-size: large;
+  font-weight: bold;
+  color: gold;
+}
