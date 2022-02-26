@@ -1,4 +1,4 @@
-.main-first-article {
+.main {
   width: 1200px;
   margin: 0 auto;
   padding: 205px 0 60px 0;
@@ -20,4 +20,115 @@
 .main-first-article > .part2 {
   font-size: 22px;
   text-align: center;
+}
+
+.main-second-article > h2 {
+  text-align: center;
+  font-size: 60px;
+  letter-spacing: -5px;
+  margin: 100px auto 40px auto;
+}
+
+.main-second-article strong {
+  color: #e66d16;
+}
+
+.main-button {
+  width: 100%;
+  height: 64px;
+  max-width: 240px;
+  border-radius: 8px;
+  color: #fff;
+  background: #ff9632;
+  font-size: 20px;
+  margin: 0 auto -70px auto;
+  display: block;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.main-third-article {
+  text-align: center;
+}
+
+.second-section {
+  display: flex;
+  min-height: 1024px;
+  align-items: center;
+}
+
+.second-section-first-article > h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  letter-spacing: -5px;
+}
+
+.second-section-first-article > p {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #666;
+  letter-spacing: -1px;
+}
+
+.second-section-second-article {
+  margin-left: auto;
+  width: 440px;
+}
+
+.second-section-second-article > .part1 {
+  margin-bottom: 55px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.second-section-second-article > .part1 > span:first-child {
+  color: #e66d16;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.second-section-second-article > .part1 > span:last-child {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: right;
+}
+
+.second-section-second-article > .part2 {
+  display: flex;
+}
+
+.card {
+  width: 33.333333%;
+  height: 160px;
+  padding: 20px;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+
+.card > h6 {
+  height: 60px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.card:nth-child(1) {
+  background: #ff9632;
+}
+
+.card:nth-child(2) {
+  background: #b39c7d;
+}
+
+.card:nth-child(3) {
+  background: #6f6558;
 }
