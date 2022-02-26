@@ -1,0 +1,50 @@
+.main-nav {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-title {
+  width: 215px;
+  cursor: pointer;
+}
+
+.label {
+  font-size: 20px;
+  font-weight: 700;
+  padding-left: 10px;
+  color: #4d463d;
+}
+
+.menu-list > span {
+  font-size: 14px;
+  font-weight: 400;
+  display: inline-block;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.start-button {
+  margin-left: auto;
+}
+
+.start-button > button {
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  width: 100%;
+  padding: 7px 15px;
+  background: #b39c7d;
+  cursor: pointer;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  transition: all 0.2s ease-out;
+  border-radius: 3px;
+  text-align: center;
+  border: 0;
+}
+
+.start-button > button:active {
+  background-color: #333;
+}
