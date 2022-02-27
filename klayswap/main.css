@@ -31,6 +31,8 @@
 
 .main-second-article strong {
   color: #e66d16;
+  font-size: 60px;
+  letter-spacing: -5px;
 }
 
 .main-button {
@@ -64,7 +66,6 @@
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 30px;
-  letter-spacing: -5px;
 }
 
 .second-section-first-article > p {
@@ -72,7 +73,6 @@
   font-weight: 500;
   margin-top: 20px;
   color: #666;
-  letter-spacing: -1px;
 }
 
 .second-section-second-article {
@@ -84,6 +84,7 @@
   margin-bottom: 55px;
   text-align: right;
   margin-right: 20px;
+  opacity: 0;
 }
 
 .second-section-second-article > .part1 > span:first-child {
@@ -103,6 +104,7 @@
 
 .second-section-second-article > .part2 {
   display: flex;
+  opacity: 0;
 }
 
 .card {
@@ -131,4 +133,42 @@
 
 .card:nth-child(3) {
   background: #6f6558;
+}
+
+.card > div {
+  text-align: right;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.5s;
+}
+
+.fadeInDown {
+  animation: fadeInDown 0.5s;
+}
+
+.show {
+  opacity: 1 !important;
 }
