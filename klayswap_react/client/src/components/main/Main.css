@@ -1,0 +1,83 @@
+.main {
+  margin: 0 auto;
+  padding-top: 175px;
+  width: 1200px;
+}
+
+.text {
+  margin: 0 auto 30px auto;
+  max-width: 800px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.text > span {
+  color: #e66d16;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.slippage {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  justify-content: right;
+}
+
+.slippage div:nth-child(1) {
+  padding: 0 10px;
+  border-radius: 2px;
+  color: #e66d16;
+  background: rgba(255, 150, 50, 0.1);
+  cursor: pointer;
+}
+
+.slippage div:nth-child(2) {
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.slippage div:nth-child(3) {
+  cursor: pointer;
+}
+
+.exchange-card {
+  width: 100%;
+  height: auto;
+  min-height: 320px;
+  margin: 0 auto;
+  max-width: 800px;
+  position: relative;
+  -webkit-animation: slideBottomToTop 0.7s ease-out forwards;
+  animation: slideBottomToTop 0.7s ease-out forwards;
+}
+
+.card1 {
+  padding-top: 50px;
+  width: calc(100% - 180px);
+  position: relative;
+  padding: 30px 40px;
+}
+
+.card1 > article {
+  display: flex;
+}
+
+.title {
+  justify-content: left;
+  font-size: 16px;
+  color: #b39c7d;
+  font-weight: 700;
+}
+
+.blur-bg {
+  width: 100%;
+  height: 75%;
+  left: 40px;
+  top: 32.5%;
+  position: absolute;
+  -webkit-filter: blur(40px);
+  filter: blur(40px);
+  background: rgba(193, 197, 204, 0.6);
+}

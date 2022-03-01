@@ -1,0 +1,72 @@
+.main-header {
+  border-bottom: 1px solid #ebeef2;
+}
+
+.first-section {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.first-section > .part1,
+.first-section > .part2,
+.first-section > .part3 {
+  font-size: 12px;
+  font-weight: bold;
+  color: #b39c7d;
+}
+
+.first-section > .part1 {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.first-section > .part2 {
+  padding: 0 20px;
+  border-left: 1px solid #dee3eb;
+  border-right: 1px solid #dee3eb;
+}
+
+.first-section > .part3 {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+@keyframes pulseHealth {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgb(106 208 186 / 10%);
+    box-shadow: 0 0 0 0 rgb(106 208 186 / 10%);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 1em rgb(106 208 186 / 20%);
+    box-shadow: 0 0 0 1em rgb(106 208 186 / 20%);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgb(106 208 186 / 30%);
+    box-shadow: 0 0 0 0 rgb(106 208 186 / 30%);
+  }
+}
+
+.circle-icon {
+  display: inline-block;
+  background: #6ad0ba;
+  -webkit-animation: pulseHealth 2s ease-out infinite;
+  animation: pulseHealth 2s ease-out infinite;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  font-size: 7px;
+  margin: 0;
+  margin-top: 1px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.sharp {
+  margin-left: 12px;
+  color: #6ad0ba;
+  font-weight: bold;
+}

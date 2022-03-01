@@ -1,0 +1,21 @@
+@import url(https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700");
+
+* {
+  font-family: Spoqa Han Sans, Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header_nav {
+  width: 100%;
+  top: 0;
+  position: fixed;
+  background-color: #fff;
+  z-index: 2;
+}
