@@ -21,7 +21,6 @@ const Main = () => {
           />
         </div>
       </section>
-
       <section className="exchange-card">
         <div class="blur-bg" />
         <Card1 />
