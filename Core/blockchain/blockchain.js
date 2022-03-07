@@ -10,9 +10,10 @@ class BlockChain {
   constructor(user, blockchain) {
     this.blockchain = blockchain || [Block.getGenesis()]; // 블록체인
     this.transactions = []; // 트랜잭션 모음
+    this.mempool = [];
     this.user = user || "COINBASE"; // 코인베이스
     this.wantedTimeSecond = 20; // 난이도 조절 20초 (10분)
-    this.wantedBlockCount = 20; // 20개마다 난이도 조절 (2016개)
+    this.wantedBlockCount = 10; // 10개마다 난이도 조절 (2016개)
     this.multipleNumber = 4; // 난이도 4배 증가
   }
 
@@ -27,7 +28,7 @@ class BlockChain {
   }
 
   addTransaction(transaction) {
-    this.transactions.push(transaction);
+    this.mempool.push(transaction);
   }
 
   getTarget(bits) {
@@ -56,6 +57,8 @@ class BlockChain {
 
   async mining(isStop) {
     console.log("mining");
+    this.transactions = this.mempool;
+    this.mempool = [];
     const lastBlock = this.getLastBlock();
     const newBlock = new Block({
       index: lastBlock.index + 1,
@@ -85,7 +88,7 @@ class BlockChain {
     let difficulty = this.bitsToDifficulty(bits);
     const lastBlock = this.getLastBlock();
     if (lastBlock.index > 0 && lastBlock.index % this.wantedBlockCount == 0) {
-      console.log(`10개 시간 비교`);
+      console.log(`${this.wantedBlockCount}개 시간 비교`);
       let reTargetTime =
         this.blockchain[this.blockchain.length - this.wantedBlockCount]
           .timestamp;
@@ -129,7 +132,7 @@ class BlockChain {
   }
 }
 
-/* const blockchain = new BlockChain();
+const blockchain = new BlockChain();
 const transaction1 = new Transaction({
   from: "user1",
   to: "user2",
@@ -164,6 +167,6 @@ const transaction4 = new Transaction({
     console.log(w.getMyAmount("user1"));
     console.log(w.getMyAmount("user2"));
   }
-})(); */
+})();
 
 module.exports = BlockChain;
