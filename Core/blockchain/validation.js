@@ -29,7 +29,7 @@ class Validation {
   }
 
   static compareWithHashs(blockchain, newBlock) {
-    if (blockchain[blockchain.length - 1].hash === newBlock.previousHash)
+    if (blockchain[blockchain.length - 1].hash !== newBlock.previousHash)
       console.log(
         "마지막 블록의 현재 해쉬와 새로운블록의 이전해쉬가 다릅니다!"
       );

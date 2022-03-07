@@ -159,8 +159,7 @@ input::-webkit-inner-spin-button {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
-  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
+  cursor: pointer;
 }
 .ic-token-symbol img {
   width: 100%;
@@ -171,7 +170,6 @@ input::-webkit-inner-spin-button {
 .ic-token-symbol:hover {
   transition: all 0.1s linear;
   border: 2px solid #ff9632;
-  padding: 3px;
 }
 
 .second-line {
