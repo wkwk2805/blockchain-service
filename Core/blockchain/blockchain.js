@@ -129,7 +129,7 @@ class BlockChain {
   }
 }
 
-const blockchain = new BlockChain();
+/* const blockchain = new BlockChain();
 const transaction1 = new Transaction({
   from: "user1",
   to: "user2",
@@ -164,6 +164,6 @@ const transaction4 = new Transaction({
     console.log(w.getMyAmount("user1"));
     console.log(w.getMyAmount("user2"));
   }
-})();
+})(); */
 
 module.exports = BlockChain;
