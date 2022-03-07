@@ -2,17 +2,18 @@ const { BN } = require("bn.js");
 const Block = require("./block");
 const Transaction = require("./transaction");
 const Validation = require("./validation");
+const Wallet = require("./wallet");
 
 class BlockChain {
   HANDICAP = 0x4000000;
 
   constructor(user, blockchain) {
-    this.blockchain = blockchain || [Block.getGenesis()];
-    this.transactions = [];
-    this.user = user || "SYSTEM";
-    this.wantedTimeSecond = 20;
-    this.wantedBlockCount = 20;
-    this.multipleNumber = 4;
+    this.blockchain = blockchain || [Block.getGenesis()]; // 블록체인
+    this.transactions = []; // 트랜잭션 모음
+    this.user = user || "COINBASE"; // 코인베이스
+    this.wantedTimeSecond = 20; // 난이도 조절 20초 (10분)
+    this.wantedBlockCount = 20; // 20개마다 난이도 조절 (2016개)
+    this.multipleNumber = 4; // 난이도 4배 증가
   }
 
   slowResolve() {
@@ -76,6 +77,7 @@ class BlockChain {
     newBlock.difficulty = difficulty;
     newBlock.bits = this.difficultyToBits(difficulty);
     console.log("새로운 블록:", newBlock);
+    this.transactions = [];
     return newBlock;
   }
 
@@ -127,7 +129,7 @@ class BlockChain {
   }
 }
 
-/* const blockchain = new BlockChain();
+const blockchain = new BlockChain();
 const transaction1 = new Transaction({
   from: "user1",
   to: "user2",
@@ -150,18 +152,18 @@ const transaction4 = new Transaction({
 });
 
 (async () => {
-  while (blockchain.blockchain.length <= 1) {
+  while (blockchain.blockchain.length <= 100) {
     blockchain.addTransaction(transaction1);
     blockchain.addTransaction(transaction2);
     blockchain.addTransaction(transaction3);
     blockchain.addTransaction(transaction4);
     blockchain.addBlock(await blockchain.mining());
+    console.log(blockchain.blockchain, blockchain.blockchain.length);
+    const w = new Wallet(blockchain);
+
+    console.log(w.getMyAmount("user1"));
+    console.log(w.getMyAmount("user2"));
   }
 })();
-
-const w = new Wallet(blockchain);
-
-console.log(w.getMyAmount("user1"));
-console.log(w.getMyAmount("user2")); */
 
 module.exports = BlockChain;
