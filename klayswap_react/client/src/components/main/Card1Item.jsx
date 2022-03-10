@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card1Item = ({ text, value }) => {
+const Card1Item = ({ text, value, imgName }) => {
   return (
     <div>
       <article class="title">{text}</article>
@@ -14,7 +14,7 @@ const Card1Item = ({ text, value }) => {
         />
         <div class="ic-handle-drp"></div>
         <div class="ic-token-symbol">
-          <img src="https://s.klayswap.com/img/token/ic-klay-v2.svg" />
+          <img src={`https://s.klayswap.com/img/token/${imgName}.svg`} />
         </div>
       </article>
       <article className="second-line">
