@@ -2,6 +2,8 @@ import React from "react";
 import "./Nav.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccount } from "../store/account";
+import tokenABI from "../abi/tokenABI";
+const KETH = "0x34d21b1e550d73cee41151c77f3c73359527a396";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -10,20 +12,28 @@ const Nav = () => {
     if (window.klaytn) {
       const addrs = await window.klaytn.enable();
       const balance = await window.caver.klay.getBalance(addrs[0]);
-      dispatch(setAccount({ address: addrs[0], balance: balance }));
+      const contract = new window.caver.klay.Contract(tokenABI, KETH);
+      const kEthBalance = await contract.methods.balanceOf(addrs[0]).call();
+      dispatch(
+        setAccount({
+          address: addrs[0],
+          balance: balance,
+          kEthBalance: kEthBalance,
+        })
+      );
     } else {
       alert("카이카스 지갑을 설치해주세요");
     }
   };
   return (
-    <nav class="main-nav">
-      <section class="logo-title">
+    <nav className="main-nav">
+      <section className="logo-title">
         <span>
           <img src="https://klayswap.com/img/logo/logo.svg" alt="main logo" />
         </span>
-        <span class="label">KLAYswap</span>
+        <span className="label">KLAYswap</span>
       </section>
-      <section class="menu-list">
+      <section className="menu-list">
         <span>내 자산</span>
         <span>스왑</span>
         <span>
@@ -47,7 +57,7 @@ const Nav = () => {
         <span>Drops</span>
         <span>대시보드</span>
       </section>
-      <section class="start-button">
+      <section className="start-button">
         {account.address === "" ? (
           <button onClick={startKlayswap}>클레이스왑 시작하기</button>
         ) : (

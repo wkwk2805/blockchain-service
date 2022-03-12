@@ -22,7 +22,7 @@ const Main = () => {
         </div>
       </section>
       <section className="exchange-card">
-        <div class="blur-bg" />
+        <div className="blur-bg" />
         <Card1 />
         <Card2 />
       </section>

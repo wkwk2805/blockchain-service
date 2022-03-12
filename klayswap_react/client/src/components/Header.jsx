@@ -3,9 +3,9 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <header class="main-header">
-      <section class="first-section">
-        <div class="part1">
+    <header className="main-header">
+      <section className="first-section">
+        <div className="part1">
           <span>HELP</span>
           <span>
             <img
@@ -14,13 +14,13 @@ const Header = () => {
             />
           </span>
         </div>
-        <div class="part2">
-          <p class="circle-icon"></p>
+        <div className="part2">
+          <p className="circle-icon"></p>
           <span>mainnet</span>
-          <span class="sharp">#</span>
+          <span className="sharp">#</span>
           <span>8,321,564</span>
         </div>
-        <div class="part3">
+        <div className="part3">
           <span>KO</span>
           <span>
             <img

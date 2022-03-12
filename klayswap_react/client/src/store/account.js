@@ -10,7 +10,7 @@ export const setAccount = (account) => {
 };
 
 // reducer
-const initialState = { address: "", balance: 0 };
+const initialState = { address: "", balance: 0, kEthBalance: 0 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
