@@ -52,7 +52,7 @@ const Card1Item2 = ({ text, balance, imgName }) => {
         <div>
           보유 <span>{balance}</span>
         </div>
-        <div>KLAY</div>
+        <div>KETH</div>
       </article>
     </div>
   );

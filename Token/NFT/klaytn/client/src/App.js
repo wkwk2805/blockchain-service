@@ -102,8 +102,8 @@ import ConnectBtn from "./components/ConnectBtn";
 import "./App.css";
 import Loading from "./components/Loading";
 
-// const myNFTAddress = "0x087f153eCd92eB53fDd54bca4c30625350720286"; // local contract address
-const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
+const myNFTAddress = "0x99331e001f69A25bC2c8fD490c2E5113d9F0e489"; // local contract address
+// const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
 
 const App = () => {
   const [web3, setWeb3] = useState();
@@ -129,8 +129,8 @@ const App = () => {
         ) : (
           <ConnectBtn onClick={connectWallet} />
         )}
-        <UploadBtn web3={web3} />
-        {web3 ? <ItemList web3={web3} /> : <></>}
+        <UploadBtn web3={web3} myNFTAddress={myNFTAddress} />
+        {web3 ? <ItemList web3={web3} myNFTAddress={myNFTAddress} /> : <></>}
       </div>
     </div>
   );
