@@ -30,12 +30,13 @@ contract MyNFT is ERC721("MyNFT", "MNFT"), ERC721URIStorage, ERC721Enumerable, E
         return newItemId;
     }
     
+    // 계정을 활용하여, 계정이 가진 모든 tokenId와 Id에 해당하는 데이터를 가져오기 위해 사용
     function getItems(address from) public view returns(ReturnData[] memory){
         uint256 balance = balanceOf(from);
         ReturnData[] memory items = new ReturnData[](balance);
         for(uint i = 0; i < balance; i++) {
-            uint256 id = tokenOfOwnerByIndex(from, i);
-            items[i] = ReturnData(id, tokenURI(id));
+            uint256 tokenId = tokenOfOwnerByIndex(from, i);
+            items[i] = ReturnData(tokenId, tokenURI(tokenId));
         }
         return items;
     }
