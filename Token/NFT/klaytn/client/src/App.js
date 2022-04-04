@@ -102,7 +102,7 @@ import ConnectBtn from "./components/ConnectBtn";
 import "./App.css";
 import Loading from "./components/Loading";
 
-const myNFTAddress = "0x99331e001f69A25bC2c8fD490c2E5113d9F0e489"; // local contract address
+const myNFTAddress = "0xffC8Fcb991dd1f9c489FeA0b1F544e5b49758e98"; // local contract address
 // const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
 
 const App = () => {

@@ -4,9 +4,7 @@ import myNFT from "../contracts/MyNFT.json";
 import { show } from "../store/loading";
 import { useDispatch } from "react-redux";
 
-const myNFTAddress = "0x14224540139b64Bbb6D84fCC4041B0b6083c7ee1"; // rinkeby contract address
-
-const RemoveBtn = ({ web3, tokenId }) => {
+const RemoveBtn = ({ web3, tokenId, myNFTAddress }) => {
   const dispatch = useDispatch();
   const burnNFT = async () => {
     if (!window.confirm("정말로 삭제하시겠습니까?")) return;

@@ -43,7 +43,11 @@ export default function ItemList({ web3, myNFTAddress }) {
               position="below"
             />
           </ImageListItem>
-          <RemoveBtn tokenId={item.tokenId} web3={web3} />
+          <RemoveBtn
+            tokenId={item.tokenId}
+            web3={web3}
+            myNFTAddress={myNFTAddress}
+          />
         </div>
       ))}
     </ImageList>
